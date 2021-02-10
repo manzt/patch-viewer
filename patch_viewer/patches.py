@@ -10,8 +10,8 @@ import numpy as np
 # https://github.com/napari/napari/blob/d5a28122129e6eae0f5ada77cb62c4bd5a714b60/napari/layers/base/base.py#L26
 RENDERING_DEFAULTS = {
     "visible": False,
-    "colormap": "twilight",
-    "opacity": 0.5,
+    "colormap": "turbo",
+    "opacity": 1,
 }
 
 
@@ -55,12 +55,14 @@ class Patches:
         y_len = math.ceil((y_max - y_min) / size_y)
 
         # Scale and translate each pixel resolution heatmap to reference size
-        meta = {**meta, **{"translate": (y_min, x_min), "scale": (size_y, size_x)}}
+        meta = {
+            **meta,
+            **{"translate": (0, y_min, x_min), "scale": (1, size_y, size_x)},
+        }
 
+        # Create dense pixel heatmap
+        data = np.zeros((len(self.labels), y_len, x_len), dtype="f4")
         for i, label in enumerate(self.labels):
-
-            # Create dense pixel heatmap
-            data = np.zeros((y_len, x_len), dtype="f4")
 
             # Extract attention scores for current heatmap
             scores = self.scores[:, 0, i]
@@ -73,9 +75,10 @@ class Patches:
             # Fill dense array with corresponding attention scores
             for coord_idx, (left, top) in enumerate(self.coords):
                 idx = (
+                    i,
                     math.ceil((top - y_min) / size_y),
                     math.ceil((left - x_min) / size_x),
                 )
                 data[idx] = scores[coord_idx]
 
-            yield (data, {**meta, **{"name": label}}, "image")
+        yield (data, {**meta, **{"name": "heatmap"}}, "image")
