@@ -50,4 +50,4 @@ def patch_reader(path: str):
     # Load patches
     patches = Patches.from_h5(path)
 
-    return [pyramid_layer, patches.to_layer()]
+    return [pyramid_layer, patches.as_layer()]

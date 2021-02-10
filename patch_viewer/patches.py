@@ -42,7 +42,7 @@ class Patches:
         ]
         return cls(coords, scores, counts, patch_size, labels)
 
-    def to_layer(
+    def as_layer(
         self, normalize=True, meta=RENDERING_DEFAULTS
     ) -> Tuple[np.ndarray, Dict, str]:
 
