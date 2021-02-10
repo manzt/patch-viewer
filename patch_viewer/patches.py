@@ -1,7 +1,7 @@
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Generator, List, Tuple, Union
+from typing import Dict, List, Tuple, Union
 
 import h5py
 import numpy as np
@@ -9,9 +9,9 @@ import numpy as np
 # Default parameters for each heatmap layer
 # https://github.com/napari/napari/blob/d5a28122129e6eae0f5ada77cb62c4bd5a714b60/napari/layers/base/base.py#L26
 RENDERING_DEFAULTS = {
-    "visible": False,
+    "visible": True,
     "colormap": "turbo",
-    "opacity": 1,
+    "opacity": 0.5,
 }
 
 
@@ -42,9 +42,9 @@ class Patches:
         ]
         return cls(coords, scores, counts, patch_size, labels)
 
-    def to_layers(
+    def to_layer(
         self, normalize=True, meta=RENDERING_DEFAULTS
-    ) -> Generator[Tuple[np.ndarray, Dict, str], None, None]:
+    ) -> Tuple[np.ndarray, Dict, str]:
 
         # Compute the size of the given raster
         size_x, size_y = self.patch_size
@@ -81,4 +81,4 @@ class Patches:
                 )
                 data[idx] = scores[coord_idx]
 
-        yield (data, {**meta, **{"name": "heatmap"}}, "image")
+        return (data, {**meta, **{"name": "heatmap"}}, "image")
