@@ -6,7 +6,6 @@ from napari_plugin_engine import napari_hook_implementation
 
 from .patches import Patches
 
-
 SUFFIX = "_blockmap.h5"
 
 # TODO: Fix me! This is a very naive way to try to find the associated slide.
@@ -46,10 +45,9 @@ def napari_get_reader(path: str):
 def patch_reader(path: str):
     # Load slide
     slide_path = find_slide(path)
-    pyramid_layer = reader_function(str(slide_path))
+    pyramid_layer = reader_function(str(slide_path))[0]
 
     # Load patches
     patches = Patches.from_h5(path)
-    heatmap_layers = list(patches.to_layers())
 
-    return pyramid_layer + heatmap_layers
+    return [pyramid_layer, patches.as_layer()]
