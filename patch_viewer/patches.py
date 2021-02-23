@@ -27,7 +27,7 @@ class Patches:
     def from_h5(cls, path: Union[Path, str]):
         with h5py.File(path) as f:
             coords = f["coords"][:]
-            scores = f["attention_scores"][:]
+            scores = f["A_coattn"][:]
             counts = f["counts"][:][0]
 
         # TODO: derive these from the blockmap source
