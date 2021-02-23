@@ -13,7 +13,6 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 Once Brew is installed, you can install OpenSlide via:
 ```bash
 $ brew install openslide
-$ pip-python3 install openslide-python
 ```
 
 ### 3. Install Python Dependencies for Napari
@@ -21,7 +20,7 @@ $ pip-python3 install openslide-python
 $ conda create -n patch-viewer python=3.9
 $ conda activate patch-viewer
 $ pip install "napari[all]" # install napari
-$ pip install -e . # install patch-viewer plugin (as editable)
+$ pip install git+git://github.com/manzt/patch-viewer.git # install this package from github
 ```
 
 ### 4. Napari Usage
@@ -35,7 +34,7 @@ Each dataset folder contains: 1) a **Raw_HE** folder containing the raw H&E imag
 1. Go to the **Blockmaps** directory
 2. Find the **.h5** file you are interested in visualizing
 3. Drag-and-drop the **.h5** file to Napari
-<img src="napari_1.png" width="1500px" align="center" />
+<img src="docs/napari_1.png" width="1500px" align="center" />
 
 Below is a walkthrough on the UI of Napari:
 1. Selects the desired colormap. "turbo" is set as the default.
@@ -43,7 +42,7 @@ Below is a walkthrough on the UI of Napari:
 3. Before opening another **.h5** file, delete the currently opened masks.
 4. Slider bar to switch between the co-attention heatmaps.
 5. Counter on the current heatmap you are viewing.
-<img src="napari_2.png" width="1500px" align="center" />
+<img src="docs/napari_2.png" width="1500px" align="center" />
 
 Co-Attention Heatmap Signature Names:
 
