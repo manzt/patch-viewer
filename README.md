@@ -34,7 +34,7 @@ Each dataset folder contains: 1) a **Raw_HE** folder containing the raw H&E imag
 1. Go to the **Blockmaps** directory
 2. Find the **.h5** file you are interested in visualizing
 3. Drag-and-drop the **.h5** file to Napari
-<img src="docs/napari_1.png" width="1500px" align="center" />
+<img src="assets/napari_1.png" width="1500px" align="center" />
 
 Below is a walkthrough on the UI of Napari:
 1. Selects the desired colormap. "turbo" is set as the default.
@@ -42,7 +42,7 @@ Below is a walkthrough on the UI of Napari:
 3. Before opening another **.h5** file, delete the currently opened masks.
 4. Slider bar to switch between the co-attention heatmaps.
 5. Counter on the current heatmap you are viewing.
-<img src="docs/napari_2.png" width="1500px" align="center" />
+<img src="assets/napari_2.png" width="1500px" align="center" />
 
 Co-Attention Heatmap Signature Names:
 
