@@ -46,6 +46,7 @@ Below is a walkthrough on the UI of Napari:
 <img src="napari_2.png" width="1500px" align="center" />
 
 Co-Attention Heatmap Signature Names:
+
 0. Tumor Supressor Genes
 1. Oncogenes
 2. Protein Kinases
